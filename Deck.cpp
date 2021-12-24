@@ -10,17 +10,12 @@ Deck::Deck() {
     char *suits = {'D', 'S', 'H', 'C'};
     this->cards = new Card[52];
     // 0-10 11, 12, 13, 14
-    int index = 0;
     for (int i = 0; i < 15; i++) {
         for(int j = 0; j < 4; j++) {
-            if (index == 0) {
+            if (i == 0 && j == 0) {
                 this->cards[index] = new Card(suits[j], i);
             } else {
-                Card *tempHead = this->cards;
-                while (tempHead->next != NULL) {
-                    tempHead = tempHead->next;
-                }
-                tempHead->next = new Card(suits[j], i);
+                addCard(new Card(suits[j], i));
             }
         }
     }
@@ -51,14 +46,12 @@ Card Deck::deal() {
     }
     Card *prevCard = tempHead;
     while (tempHead->next != NULL) {
-        tempHead = tempHead->next;
-        if (tempHead->next == NULL) {
-            // reached card
-            prevCard->next = NULL;
-            return *tempHead;
-        }
         prevCard = tempHead;
+        tempHead = tempHead->next;
     }
+    Card theCard = *tempHead;
+    tempHead = NULL;
+    return theCard;
 };
 
 void Deck::addCard(Card *newCard) {
@@ -87,18 +80,18 @@ Card *Deck::shuffle() {
             break;
         }
     }
-    Deck leftDeck = Deck(leftHalf);
-    Deck rightDeck = Deck(rightHalf);
-    Deck newDeck = Deck(NULL);
+    Deck *leftDeck = new Deck(leftHalf);
+    Deck *rightDeck = new Deck(rightHalf);
+    Deck *newDeck = new Deck(NULL);
     int total = 0;
     while(total != totalNumCards) {
 
         int randNum = (1+round(rand()))+(2*ceil(rand()))+(3*floor(rand()));
         if (randNum % 2 == 0) {
             // deal from left
-            if (leftHalf != NULL) {
+            if (leftDeck->cards != NULL) {
                 std::cout << "dealing from left" << std::endl;
-                
+                newDeck->addCard(leftDeck->deal());
             }
         }
 
