@@ -25,6 +25,11 @@ Deck::Deck() {
 
 Deck::getNumberOfCards() {
 
+    int count = 0;
+    Card *tempHead = this->cards;
+    while (tempHead != NULL) {
+        
+    }
 
 
 }

@@ -3,6 +3,7 @@
 Card::Card(char newSuit, int newRank) {
     this->suit = newSuit;
     this->rank = newRank;
+    this->next = NULL;
 };
 
 Card::getRank() {
