@@ -9,8 +9,22 @@ Deck::Deck() {
     int index = 0;
     for (int i = 0; i < 15; i++) {
         for(int j = 0; j < 4; j++) {
-            this->cards[index] = new Card(suits[j], i);
+            if (index == 0) {
+                this->cards[index] = new Card(suits[j], i);
+            } else {
+                Card *tempHead = this->cards;
+                while (tempHead->next != NULL) {
+                    tempHead = tempHead->next;
+                }
+                tempHead->next = new Card(suits[j], i);
+            }
         }
     }
+
+}
+
+Deck::getNumberOfCards() {
+
+
 
 }

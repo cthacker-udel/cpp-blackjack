@@ -7,6 +7,8 @@ class Card {
 
     char suit;
     int rank;
+    Card *next;
+    friend class Deck;
 
     public:
         Card(char, int);
