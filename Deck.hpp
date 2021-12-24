@@ -8,6 +8,8 @@ class Deck {
         int getNumberOfCards();
         Card deal();
         Card *shuffle();
+        Deck(Card *);
+        void addCard(Card *);
         ~Deck();
 
 };
