@@ -7,7 +7,7 @@ class Deck {
         Deck();
         int getNumberOfCards();
         Card deal();
-        Card *shuffle();
+        void shuffle();
         Deck(Card *);
         void addCard(Card *);
         ~Deck();

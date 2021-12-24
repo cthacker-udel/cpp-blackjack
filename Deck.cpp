@@ -62,7 +62,7 @@ void Deck::addCard(Card *newCard) {
     tempHead->next = newCard;
 };
 
-Card *Deck::shuffle() {
+void Deck::shuffle() {
 
     Card *leftHalf = NULL;
     Card *rightHalf = NULL;
@@ -83,19 +83,24 @@ Card *Deck::shuffle() {
     Deck *leftDeck = new Deck(leftHalf);
     Deck *rightDeck = new Deck(rightHalf);
     Deck *newDeck = new Deck(NULL);
-    int total = 0;
-    while(total != totalNumCards) {
-
+    while(leftDeck->cards != NULL || rightDeck->cards != NULL) {
         int randNum = (1+round(rand()))+(2*ceil(rand()))+(3*floor(rand()));
         if (randNum % 2 == 0) {
-            // deal from left
             if (leftDeck->cards != NULL) {
                 std::cout << "dealing from left" << std::endl;
                 newDeck->addCard(leftDeck->deal());
             }
+        } else {
+            if (rightDeck->cards != NULL) {
+                std::cout << "dealing from right" << std::endl;
+                newDeck->addCard(rightDeck->deal());
+            }
         }
-
     }
+    this->cards = newDeck->cards;
+};
 
-}
+Deck::~Deck() {
+    this->cards = NULL;
+};
 
