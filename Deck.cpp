@@ -27,6 +27,24 @@ int Deck::getNumCards() {
 	return this->numCards;
 }
 
+int Deck::getTotal() {
+	int total = 0;
+	Card *tempHead = this->cards;
+	while (tempHead != NULL) {
+		if (tempHead->rank >= 10) {
+			total += 10;
+		} else {
+			total += tempHead->rank;
+		}
+		tempHead = tempHead->next;
+	}
+	return total;
+}
+
+void Deck::displayHandTotal(string playerName) {
+	cout << playerName << "'s total: " << this->getTotal() << endl;
+}
+
 void Deck::setNumCards() {
 
 	int count = 0;
@@ -36,7 +54,7 @@ void Deck::setNumCards() {
 		tempHead = tempHead->next;
 	}
 	this->numCards = count;
-	cout << "SetNumCards cards = " << count << endl;
+	//cout << "SetNumCards cards = " << count << endl;
 
 }
 
@@ -46,7 +64,7 @@ Deck::Deck(Card *cards) {
 };
 
 Card *Deck::deal() {
-	cout << "dealing" << endl;
+	//cout << "dealing" << endl;
     // deal from bottom
     Card *tempHead = this->cards;
     if (tempHead == NULL) {
@@ -101,7 +119,7 @@ void Deck::shuffle() {
     Deck *newDeck = new Deck(NULL);
     while(leftDeck->numCards > 0 || rightDeck->numCards > 0) {
         int randNum = (1+round(rand()))+(2*ceil(rand()))+(3*floor(rand()));
-        cout << "card count, left = " << leftDeck->numCards << " right = " << rightDeck->numCards << endl;
+        //cout << "card count, left = " << leftDeck->numCards << " right = " << rightDeck->numCards << endl;
         if (leftDeck->numCards > 0 && randNum % 2 == 0) {
               std::cout << "dealing from left" << std::endl;
               newDeck->addCard(leftDeck->deal());

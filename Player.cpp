@@ -1,16 +1,19 @@
-#include "Deck.hpp"
+#include "Player.hpp"
 #include <string.h>
-#pragma once
 using namespace std;
 
-class Player {
+Player::Player(string newName) {
+	this->hand = new Deck(NULL);
+	this->name = newName;
+};
 
-    Deck *hand;
-    string name;
+Deck *Player::getHand() {
+	return this->hand;
+};
 
-    public:
-        Player(Deck *, string);
-        Deck *getHand();
-        int getHandRank();
-        ~Player();
+
+Player::~Player() {
+	this->hand = NULL;
+	this->name = "";
+	delete this;
 };

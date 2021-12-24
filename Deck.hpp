@@ -16,5 +16,7 @@ class Deck {
         void printDeck();
         int getNumCards();
         void setNumCards();
+        void displayHandTotal(string);
+        int getTotal();
 
 };

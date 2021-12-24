@@ -1,13 +1,16 @@
-#include <card.hpp>
+#include "Deck.hpp"
+#include <string.h>
+#pragma once
+using namespace std;
 
 class Player {
 
-    card *hand;
+    Deck *hand;
     string name;
+    friend class Blackjack;
 
     public:
-        Player(card *, string);
-        card *getHand();
-        int getHandRank();
+        Player(string);
+        Deck *getHand();
         ~Player();
 };
