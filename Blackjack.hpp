@@ -1,5 +1,5 @@
-#include "Deck.hpp";
-#include "Player.hpp";
+#include "Deck.hpp"
+#include "Player.hpp"
 
 
 class Blackjack {
@@ -10,4 +10,5 @@ class Blackjack {
         void startGame();
         Blackjack();
 
-}
+};
+
